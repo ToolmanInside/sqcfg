@@ -1,1 +1,1 @@
-* SQCFG
+# SQCFG
