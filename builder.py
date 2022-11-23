@@ -126,6 +126,7 @@ class CFGBuilder(ast.NodeVisitor):
             The CFG produced from the source code.
         """
         tree = ast.parse(src, mode='exec')
+        print(ast.dump(tree, indent = 2))
         return self.build(name, tree)
 
     def build_from_file(self, filepath):
