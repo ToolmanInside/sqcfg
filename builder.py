@@ -5,7 +5,7 @@ Control flow graph builder.
 # Modified by Andrei Nacu, 2020
 
 import ast
-from .model import Block, Link, CFG
+from model import Block, Link, CFG
 import sys
 
 
@@ -128,7 +128,7 @@ class CFGBuilder(ast.NodeVisitor):
         tree = ast.parse(src, mode='exec')
         return self.build(name, tree)
 
-    def build_from_file(self, name, filepath):
+    def build_from_file(self, filepath):
         """
         Build a CFG from some Python source file.
 
@@ -140,6 +140,7 @@ class CFGBuilder(ast.NodeVisitor):
         Returns:
             The CFG produced from the source file.
         """
+        name = "CFG by Jiaming"
         with open(filepath, 'r') as src_file:
             src = src_file.read()
             return self.build_from_src(name, src)
@@ -458,3 +459,10 @@ class CFGBuilder(ast.NodeVisitor):
         afteryield_block = self.new_block()
         self.add_exit(self.current_block, afteryield_block)
         self.current_block = afteryield_block
+
+
+if __name__ == '__main__':
+    cfg_builder = CFGBuilder()
+    file_name = sys.argv[1]
+    cfg = cfg_builder.build_from_file(file_name)
+    cfg.build_visual('example', 'pdf')
