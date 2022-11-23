@@ -125,7 +125,7 @@ class PyCFG:
 
     def on_augassign(self, node, myparents):
         """
-         AugAssign(expr target, operator op, expr value)
+        AugAssign(expr target, operator op, expr value)
         """
         p = [CFGNode(parents=myparents, ast=node)]
         p = self.walk(node.value, p)
