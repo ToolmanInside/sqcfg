@@ -1,34 +1,23 @@
 digraph {
-	1 [label="3: k1 = Int('k1')" peripheries=1 shape=rectangle]
-	0 -> 1
-	2 [label="4: a = ((1, k1), (3, 4))" peripheries=1 shape=rectangle]
-	1 -> 2
-	3 [label="5: b = ((1, 1), (1, 1))" peripheries=1 shape=rectangle]
-	2 -> 3
-	4 [label="6: c = ((3, 3), (7, 7))" peripheries=1 shape=rectangle]
-	3 -> 4
-	5 [label="8: s = Solver()" peripheries=1 shape=rectangle]
-	4 -> 5
-	6 [label="9: eq1 = a[0][1] > 0" peripheries=1 shape=rectangle]
+	1 [label="2: enter: func(no)" peripheries=2 shape=oval]
+	4 -> 1
+	6 -> 1
+	8 -> 1
+	2 [label="2: exit: func(no)" peripheries=2 shape=oval]
+	6 -> 2 [style=dotted]
+	3 -> 2 [label=F color=red]
+	2 -> 2
+	3 [label="3: if: no > 0" peripheries=1 shape=diamond]
+	1 -> 3
+	4 [label="4: func(no - 1)" peripheries=1 shape=rectangle]
+	3 -> 4 [label=T color=blue]
+	5 [label="5: print(no)" peripheries=1 shape=rectangle]
+	4 -> 5 [style=dotted]
+	2 -> 5
+	6 [label="6: func(no - 2)" peripheries=1 shape=rectangle]
 	5 -> 6
-	7 [label="10: eq2 = [[sum((a[i][k] * b[k][j] for k in range(2))) == c[i][j] for i in range(2)] for j in range(2)]" peripheries=1 shape=rectangle]
-	6 -> 7
-	8 [label="11: s.add(eq1)" peripheries=1 shape=rectangle]
-	7 -> 8
-	9 [label="12: s.add(eq2[0][0])" peripheries=1 shape=rectangle]
-	8 -> 9
-	10 [label="13: s.add(eq2[0][1])" peripheries=1 shape=rectangle]
-	9 -> 10
-	11 [label="14: s.add(eq2[1][0])" peripheries=1 shape=rectangle]
-	10 -> 11
-	12 [label="15: s.add(eq2[1][1])" peripheries=1 shape=rectangle]
-	11 -> 12
-	13 [label="17: print(s)" peripheries=1 shape=rectangle]
-	12 -> 13
-	14 [label="18: print(s.check())" peripheries=1 shape=rectangle]
-	13 -> 14
-	15 [label="19: m = s.model()" peripheries=1 shape=rectangle]
-	14 -> 15
-	16 [label="20: print(m)" peripheries=1 shape=rectangle]
-	15 -> 16
+	7 [label="9: if: __name__ == '__main__'" peripheries=1 shape=diamond]
+	0 -> 7
+	8 [label="10: func(3)" peripheries=1 shape=rectangle]
+	7 -> 8 [label=T color=blue]
 }
