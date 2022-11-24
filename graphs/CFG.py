@@ -1,4 +1,5 @@
 from utils import *
+from logzero import logger
 
 REGISTRY_IDX = 0
 REGISTRY = {}
@@ -103,6 +104,11 @@ class PyCFG:
 
     def walk(self, node, myparents):
         fname = "on_%s" % node.__class__.__name__.lower()
+        # print(node.__class__.__name__)
+        if node.__class__.__name__ != 'Module':
+            # des = ast.dump(node)
+            logger.debug(ast.dump(node))
+            # logger.warning(node.value)
         if hasattr(self, fname):
             fn = getattr(self, fname)
             v = fn(node, myparents)
@@ -263,6 +269,7 @@ class PyCFG:
             parents=myparents,
             ast=ast.parse(
                 '_if: %s' % ast.unparse(node.test).strip()).body[0])
+        print(node.test)
         ast.copy_location(_test_node.ast_node, node.test)
         test_node = self.walk(node.test, [_test_node])
         assert len(test_node) == 1
@@ -458,6 +465,7 @@ class PyCFG:
         cfg = self.reset()
         cfg.gen_cfg(code)
         cache = dict(REGISTRY)
+        print(cache)
         if remove_start_stop:
             cache = { k: cache[k] for k in cache if cache[k].source() not in {'start', 'stop'} }
             return to_graph(cache, outname)

@@ -23,12 +23,19 @@ digraph {
 	10 -> 11
 	12 [label="15: s.add(eq2[1][1])" peripheries=1 shape=rectangle]
 	11 -> 12
-	13 [label="17: print(s)" peripheries=1 shape=rectangle]
+	13 [label="17: i = 3" peripheries=1 shape=rectangle]
 	12 -> 13
-	14 [label="18: print(s.check())" peripheries=1 shape=rectangle]
+	14 [label="18: if: i > 2" peripheries=1 shape=diamond]
 	13 -> 14
-	15 [label="19: m = s.model()" peripheries=1 shape=rectangle]
-	14 -> 15
-	16 [label="20: print(m)" peripheries=1 shape=rectangle]
+	15 [label="19: print(1)" peripheries=1 shape=rectangle]
+	14 -> 15 [label=T color=blue]
+	16 [label="21: print(s)" peripheries=1 shape=rectangle]
 	15 -> 16
+	14 -> 16 [label=F color=red]
+	17 [label="22: print(s.check())" peripheries=1 shape=rectangle]
+	16 -> 17
+	18 [label="23: m = s.model()" peripheries=1 shape=rectangle]
+	17 -> 18
+	19 [label="24: print(m)" peripheries=1 shape=rectangle]
+	18 -> 19
 }

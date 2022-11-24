@@ -14,6 +14,10 @@ s.add(eq2[0][1])
 s.add(eq2[1][0])
 s.add(eq2[1][1])
 
+i = 3
+if i > 2:
+    print(1)
+
 print(s)
 print(s.check())
 m = s.model()
